@@ -1,60 +1,66 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-navigation-drawer expand-on-hover app dark color="#738678" clipped >
+       <v-list nav dense>
+          <v-list-item-group v-model="group" color="white">
+              <v-list-item @click="$router.push({name: 'Home'})" >
+                  <v-list-item-icon>
+                      <v-icon>mdi-home-outline</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>Principal</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="$router.push({name: 'dynamicHeight'})">
+                  <v-list-item-icon>
+                      <v-icon>mdi-table-row-height</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>Altura Dinámica</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="$router.push({name: 'dynamicColumns'})" >
+                  <v-list-item-icon>
+                      <v-icon> mdi-table-column-width</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>Columnas Dinámicas</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="$router.push({name: 'dynamicDisplay'})" >
+                  <v-list-item-icon>
+                      <v-icon>mdi-cellphone-link</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>Display Dinámico</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="$router.push({name: 'overflow'})">
+                  <v-list-item-icon>
+                      <v-icon>mdi-stack-overflow</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>Overflow</v-list-item-title>
+              </v-list-item>
+              
+          </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+    <v-app-bar app color="#738678" dark clipped-left flat>
+      <div class="d-flex align-center text-h4">
+        HermesCorp
       </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
 
+
     <v-main>
-      <HelloWorld/>
+        <router-view></router-view>
     </v-main>
+
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      drawer: true,
+      group: null
+    }
+  }
 };
 </script>
