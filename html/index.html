@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- You must have this line if you want mobile relation aspect -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive</title>
+</head>
+<body>
+    <div class="sidenav">
+        <div class="sidenav-content">
+            <div class="col">
+                <div class="row justify-center">
+                    <button onclick="goHome()" type="button">Home</button>
+                </div>
+                <div class="row justify-center">
+                    <button onclick="goDynamicHeight()" type="button">Altura Dinámica</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="centered" class="centered">
+            <div class="col">
+                <div class="row justify-center">
+                    <img src="./assets/logo.svg" alt="Logo" style="height: 200px;">
+                </div>
+                <div class="row justify-center">
+                    Responsividad en Vue con Vuetify
+                </div>
+            </div>
+        </div>
+        <div id="dynamic-height" class="dynamic-height col">
+            <div class="header row justify-center align-items-center">
+                Header
+            </div>
+            <div class="dynamicRow row justify-center align-items-center">
+                Row with Dynamic Height
+            </div>
+            <div class="footer row justify-center align-items-center">
+                Footer
+            </div>
+        </div>
+        <div id="dynamic-cols" class="dynamic-cols">
+
+        </div>
+        <div id="dynamic-display" class="dynamic-display">
+
+        </div>
+        <div id="overflow" class="overflow">
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function goHome() {
+        document.getElementById('centered').style.display = 'block';
+        document.getElementById('dynamic-height').style.display = 'none';
+        document.getElementById('dynamic-cols').style.display = 'none';
+        document.getElementById('dynamic-display').style.display = 'none';
+        document.getElementById('overflow').style.display = 'none';
+    }
+    function goDynamicHeight() {
+        document.getElementById('centered').style.display = 'none';
+        document.getElementById('dynamic-height').style.display = 'flex';
+        document.getElementById('dynamic-cols').style.display = 'none';
+        document.getElementById('dynamic-display').style.display = 'none';
+        document.getElementById('overflow').style.display = 'none';
+    }
+</script>
+
+<style>
+    .dynamicRow {
+        flex-grow: 1;
+        background-color:lightcoral;
+    }
+    .header {
+        max-height: 100px;
+        background-color:cadetblue;
+    }
+    .footer {
+        max-height: 80px;
+        background-color:cornflowerblue;
+    }
+    .dynamic-height {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        display: none;
+        flex-flow: column; 
+        height: 100%; 
+        color: white;
+        font-weight: 700;
+        font-size: 25px;
+    }
+    .dynamic-cols {
+        display: none;
+    }
+    .dynamic-display {
+        display: none;
+    }
+    .overflow {
+        display: none;
+    }
+    .centered {
+        position: fixed; 
+        text-align: center; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        /* width: 95%; 
+        max-width: 600px; 
+        background-color: white; 
+        border-radius: 40px; 
+        padding: 40px 60px 70px 60px;  */
+        font-size: 35px; 
+    }
+    body {
+        margin: 0 !important;
+    }
+    .sidenav-content {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .sidenav {
+        height: 100vh;
+        width: 100px;
+        background-color: rgb(115, 134, 120);
+        border-color: rgb(115, 134, 120);
+        transform: translateX(0%);
+        top: 0;
+    }
+    .container {
+        padding-left: 100px;
+        flex: 1 1 auto;
+        max-width: 100%;
+        position: relative;
+    }
+    /* Grid System based on Bootsrap Grid System */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1 auto;
+    }
+    .col {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+    .col-auto {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .col-1 {
+        flex: 0 0 auto;
+        width: 8.3333333333%;
+    }
+    .col-2 {
+        flex: 0 0 auto;
+        width: 16.6666666667%;
+    }
+    .col-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .col-4 {
+        flex: 0 0 auto;
+        width: 33.3333333333%;
+    }
+    .col-5 {
+        flex: 0 0 auto;
+        width: 41.6666666667%;
+    }
+    .col-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-7 {
+        flex: 0 0 auto;
+        width: 58.3333333333%;
+    }
+    .col-8 {
+        flex: 0 0 auto;
+        width: 66.6666666667%;
+    }
+    .col-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+    .col-10 {
+        flex: 0 0 auto;
+        width: 83.3333333333%;
+    }
+    .justify-center {
+        justify-content: center!important;
+    }
+    .justify-space-around {
+        justify-content: space-around!important;
+    }
+    .justify-space-between {
+        justify-content: space-between!important;
+    }
+    .justify-end {
+        justify-content: flex-end !important;
+    }
+    .align-center {
+        align-items: center!important;
+    }
+    .align-self-center {
+        align-self: center !important;
+    }
+    .align-items-center {
+        align-items: center!important;
+    }
+    .align-items-end {
+        align-items: flex-end!important;
+    }
+</style>
