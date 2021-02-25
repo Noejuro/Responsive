@@ -12,13 +12,16 @@
         <div class="sidenav-content">
             <div class="col">
                 <div class="row justify-center">
-                    <button onclick="goHome()" type="button">Home</button>
+                    <button onclick="goHome()" type="button" class="sidenav-btn">Home</button>
                 </div>
                 <div class="row justify-center">
-                    <button onclick="goDynamicHeight()" type="button">Altura Dinámica</button>
+                    <button onclick="goDynamicHeight()" type="button" class="sidenav-btn" >Altura Dinámica</button>
                 </div>
                 <div class="row justify-center">
-                    <button onclick="goDynamicCols()" type="button">Columnas Dinámicas</button>
+                    <button onclick="goDynamicCols()" type="button" class="sidenav-btn">Columnas Dinámicas</button>
+                </div>
+                <div class="row justify-center">
+                    <button onclick="goDynamicDisplay()" type="button" class="sidenav-btn">Display Dinámico</button>
                 </div>
             </div>
         </div>
@@ -46,12 +49,26 @@
             </div>
         </div>
         <div id="dynamic-cols" class="dynamic-cols">
-            <div class="row justify-center" id="cols-container">
-                
-            </div>
+            <div class="row justify-center" id="cols-container"></div>
         </div>
         <div id="dynamic-display" class="dynamic-display">
+            <div class="row justify-space-around align-center toolbar" >
+                <span>Menú</span>
+                <span>HermesCorp</span>
+                <span>Test User</span>
+            </div>
 
+            <div class="row justify-space-around align-center toolbar-mobile" >
+                <div class="col-6">
+                    <div class="row justify-center">Menú</div>
+                </div>
+                <div class="col-6">
+                    <div class="row justify-center">Logo</div>
+                </div>
+                <div class="col">
+                    <div class="row justify-center">Test User</div>
+                </div>
+            </div>
         </div>
         <div id="overflow" class="overflow">
 
@@ -101,9 +118,42 @@
         document.getElementById('overflow').style.display = 'none';
         loadCols();
     }
+    function goDynamicDisplay() {
+        document.getElementById('centered').style.display = 'none';
+        document.getElementById('dynamic-height').style.display = 'none';
+        document.getElementById('dynamic-cols').style.display = 'none';
+        document.getElementById('dynamic-display').style.display = 'block';
+        document.getElementById('overflow').style.display = 'none';
+    }
 </script>
 
 <style>
+    .toolbar {
+        height: 100px; 
+        background-color: cadetblue;
+        display: none !important;
+    }
+
+    .toolbar-mobile {
+        height: 150px; 
+        background-color: lightcoral;
+        display: flex !important;
+    }
+
+    .sidenav-btn {
+        width: 100%;    
+        color: white; 
+        background-color: transparent; 
+        border: solid 2px transparent; 
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        height: 50px;
+        border-bottom: 2px solid white;
+    }
+    .sidenav-btn:hover {
+        background-color: teal;
+    }
     .col-card {
         background-color: rgb(115, 134, 120);
         border-color: rgb(115, 134, 120);
@@ -127,15 +177,19 @@
         background-color:cornflowerblue;
     }
     .dynamic-height {
-        position: fixed;
-        width: 100%;
-        top: 0;
         display: none;
         flex-flow: column; 
+        position: fixed;
+        width: calc(100% - 100px);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding-left: 100px;
         height: 100%; 
         color: white;
         font-weight: 700;
         font-size: 25px;
+        z-index: -10;
     }
     .dynamic-cols {
         display: none;
@@ -149,9 +203,21 @@
         color: white;
         font-weight: 700;
         font-size: 25px;
+        z-index: -10;
     }
     .dynamic-display {
         display: none;
+        position: fixed;
+        width: calc(100% - 100px);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding-left: 100px;
+        height: 100%; 
+        color: white;
+        font-weight: 700;
+        font-size: 25px;
+        z-index: -10;
     }
     .overflow {
         display: none;
@@ -184,6 +250,7 @@
         border-color: rgb(115, 134, 120);
         transform: translateX(0%);
         top: 0;
+        z-index: 100;
     }
     .container {
         padding-left: 100px;
@@ -267,6 +334,12 @@
         .col-md-4 {
             flex: 0 0 33.3333333333%;
             max-width: 33.3333333333%;
+        }
+        .toolbar {
+            display: flex !important;
+        }
+        .toolbar-mobile {
+            display: none !important;
         }
     }
     @media (min-width: 1264px)
