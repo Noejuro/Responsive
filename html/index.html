@@ -17,6 +17,9 @@
                 <div class="row justify-center">
                     <button onclick="goDynamicHeight()" type="button">Altura Dinámica</button>
                 </div>
+                <div class="row justify-center">
+                    <button onclick="goDynamicCols()" type="button">Columnas Dinámicas</button>
+                </div>
             </div>
         </div>
     </div>
@@ -43,7 +46,9 @@
             </div>
         </div>
         <div id="dynamic-cols" class="dynamic-cols">
-
+            <div class="row justify-center" id="cols-container">
+                
+            </div>
         </div>
         <div id="dynamic-display" class="dynamic-display">
 
@@ -56,6 +61,24 @@
 </html>
 
 <script>
+    var colsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    function loadCols() {
+        var newContent = "";
+        document.getElementById("cols-container").innerHTML = "";
+        for(var i = 0; i < colsArray.length; i++) {
+            newContent += 
+            "<div class='col-sm-6 col-md-4 col-lg-3 col-xl-2 col-12' >" +
+                "<div class='card'>" +
+                    "<div class='col col-card'>" +
+                        "<div class='row justify-center align-items-center' style='height: 100%;'>" +
+                            i +
+                        "</div>" +
+                    "</div>" +
+                "</div>" +
+            "</div>";
+        }
+        document.getElementById("cols-container").innerHTML = newContent;
+    }
     function goHome() {
         document.getElementById('centered').style.display = 'block';
         document.getElementById('dynamic-height').style.display = 'none';
@@ -70,9 +93,27 @@
         document.getElementById('dynamic-display').style.display = 'none';
         document.getElementById('overflow').style.display = 'none';
     }
+    function goDynamicCols() {
+        document.getElementById('centered').style.display = 'none';
+        document.getElementById('dynamic-height').style.display = 'none';
+        document.getElementById('dynamic-cols').style.display = 'block';
+        document.getElementById('dynamic-display').style.display = 'none';
+        document.getElementById('overflow').style.display = 'none';
+        loadCols();
+    }
 </script>
 
 <style>
+    .col-card {
+        background-color: rgb(115, 134, 120);
+        border-color: rgb(115, 134, 120);
+        border-radius: 24px 4px;
+        height: 100%;
+    }
+    .card {
+        height: 138px;
+        padding:15px;
+    }
     .dynamicRow {
         flex-grow: 1;
         background-color:lightcoral;
@@ -98,6 +139,16 @@
     }
     .dynamic-cols {
         display: none;
+        position: fixed;
+        width: calc(100% - 100px);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding-left: 100px;
+        height: 100%; 
+        color: white;
+        font-weight: 700;
+        font-size: 25px;
     }
     .dynamic-display {
         display: none;
@@ -140,6 +191,7 @@
         max-width: 100%;
         position: relative;
     }
+
     /* Grid System based on Bootsrap Grid System */
     .row {
         display: flex;
@@ -195,6 +247,42 @@
         flex: 0 0 auto;
         width: 83.3333333333%;
     }
+    .col-11 {
+        flex: 0 0 91.6666666667%;
+        max-width: 91.6666666667%;
+    }
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    
+    @media (min-width: 600px) {
+        .col-sm-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+    @media (min-width: 960px) {
+        .col-md-4 {
+            flex: 0 0 33.3333333333%;
+            max-width: 33.3333333333%;
+        }
+    }
+    @media (min-width: 1264px)
+    {    
+        .col-lg-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+    @media (min-width: 1904px) {
+        .col-xl-2 {
+            flex: 0 0 16.6666666667%;
+            max-width: 16.6666666667%;
+        }
+    }
+
     .justify-center {
         justify-content: center!important;
     }
